@@ -8,7 +8,7 @@ const snake = [
     {x: 230, y: 200}
 ];
 
-let direction;
+let direction = 'right';
 
 const drawSnake = () => {
     ctx.fillStyle = '#ddd';
@@ -22,7 +22,15 @@ const drawSnake = () => {
 }
 
 const moveSnake = () => {
-
+    const head = snake.at(-1);
+    snake.shift();
+    if(direction === 'right') {
+        snake.push({x: head.x + 30, y: head.y})
+    }
 }
 
-drawSnake();
+setInterval(() => {
+    ctx.clearRect(0, 0, 600, 600);
+    moveSnake();
+    drawSnake();
+}, 300);
